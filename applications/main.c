@@ -2,10 +2,6 @@
  * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
- *
- * Change Logs:
- * Date           Author       Notes
- * 2022-11-03     WangShun       first version
  */
 
 #include "ch32v20x.h"
