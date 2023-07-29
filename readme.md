@@ -103,3 +103,14 @@ Once you have the environment and compiling tools (see 1.2), you can proceed to 
 It will take a time to compile it, the first time. After this, every time you compile, it will take fewer. In the following image, you can observe that none errors occurred. At this point, in project directory, you have a "rtthread.bin" file that will be used by you to upload the code to the board.
 
 ![](/figures/EndCompilation.png)
+
+4. Download ans install the WCH ISP studio tool:  [WCHISPTool_Setup.exe - NanjingQinhengMicroelectronics](https://www.wch-ic.com/downloads/WCHISPTool_Setup_exe.html)
+
+![](/figures/WCHISPDownload.png)
+
+5. Once installed, open it. Connect the board, using a USB Serial TTL converter (FT232RL Board). This is because, the CH32V208 board does not include in-board programmer/debugger. Another option is to acquire a WCH-Link [WCH-Link/Debugger](https://www.wch-ic.com/products/WCH-Link.html) . In this case, this utilizes CH32V208 capability to upload code using a ISP tool via serial port.
+
+The FTDI board utilizes the following driver: [FTDI-DriverWindows](https://ftdichip.com/drivers/vcp-drivers/). To install it, you could follow the following tutorial: [Instalation Guide](https://ftdichip.com/wp-content/uploads/2022/05/AN_396-FTDI-Drivers-Installation-Guide-for-Windows-10_11.pdf)
+
+![](/figures/CH32BoardUSBConnection)
+
