@@ -27,26 +27,25 @@ Once you install the tools, you need to download RT-Thread OS 5 from Github repo
 1. Open Github desktop program on your PC and the Github repo link.
 2. In the Github repo, look for the following section
 
-![](RackMultipart20230729-1-lao58c_html_8620798d5f82248a.png)
+![](/figures/CloneGitHubButton.png)
 
 3. Click Code button and select the "local tab"
 
-![Shape1](RackMultipart20230729-1-lao58c_html_6a45b3afdd3a3f42.gif) ![](RackMultipart20230729-1-lao58c_html_f499c7de5ad6a90f.png)
+![](/figures/CloneGitHubLocalTab.png)
 
 4. Click "copy clipboard" button to copy the URL that appears or click on "Open with Github Desktop" and authorize your browser invoke Github desktop.
- ![Shape2](RackMultipart20230729-1-lao58c_html_600370c98a81587.gif)
 
-![](RackMultipart20230729-1-lao58c_html_b4e995b9cc9580c0.png)
+![](/figures/CloneGitHubURLCopy.png)
 
 **Note C:** I don't recommend to simply download the repo in a zip file. This is because, I encountered to many errors while unpacking the files from Zip.
 
 5. If you have the URL, open Github Desktop and click on File-\> "Clone repository"
 
-![](RackMultipart20230729-1-lao58c_html_df9662a5c788be98.png)
+![](/figures/GitHubDesktopClone.png)
 
 6. Click on "URL tab" and paste the URL and select where repo will be downloaded.
 
-![](RackMultipart20230729-1-lao58c_html_2ff877ce7175e6a9.png)
+![](/figures/GitHubDesktopCloneURLTab.png)
 
 7. Finally, click on clone and let app download the repo.
 
@@ -59,15 +58,15 @@ Due to this project uses other tools different from RT-Thread Studio IDE. You ne
 3. Extract env-windows-1.4.0.7z where you would like. Review that the path does not contain non-ascii or space characters.
 4. Look into the path and open env.exe, if a font error appears, ignore it or change the font.
 
-![Shape3](RackMultipart20230729-1-lao58c_html_dd7cef704058cf25.gif) ![](RackMultipart20230729-1-lao58c_html_57ba53ce6af8d521.png)
+![](/figures/ComEmuExe.png)
 
 5. Once it opens, click on "menu button" -\> Settings"
 
-![](RackMultipart20230729-1-lao58c_html_2540be3471847c2f.png)
+![](/figures/ComEmuSettings.png)
 
 6. Select Integration in the side menu and click on "Register". After this, click on "Save Settings"
 
-![Shape5](RackMultipart20230729-1-lao58c_html_a389da95e0e249cc.gif) ![Shape4](RackMultipart20230729-1-lao58c_html_14bff1d31119c85c.gif) ![](RackMultipart20230729-1-lao58c_html_e94c9b93c7f5c59b.png)
+![](/figures/ComEmuIntegration.png)
 
 7. Close env.exe window.
 
@@ -80,11 +79,11 @@ Due to this project uses other tools different from RT-Thread Studio IDE. You ne
 1. Once a console is opened, type the following command: _scons --dist --target=vsc --project-path="path/your project name " --project-name="your project name"._
 2. Go to project path, and open a ComEmu there. After that, click on vscode workspace.
 
-![](RackMultipart20230729-1-lao58c_html_81a2ac74c57536b7.png)
+![](/figures/VScodeWorkspace.png)
 
 3. On VSCode, go to applications and open main.c. Once it opens, substitute the code with following:
 
-![](RackMultipart20230729-1-lao58c_html_26c2436c369d874a.png)
+![](/figures/MainCode.png)
 
 4. Save changes
 
@@ -97,10 +96,10 @@ Once you have the environment and compiling tools (see 1.2), you can proceed to 
 1. Open the directory of the project.
 2. Open rtconfig.py and change the EXECT\_PATH with r'_X:\\your sdk path\\bin'_. Save the changes and remember to use the format with double backslashes between folders
 
-![](RackMultipart20230729-1-lao58c_html_4dbfdf6369a4b803.png)
+![](/figures/VScode_rtconfig.png)
 
 3. Open ComEmu console, and type the following: _scons --exec-path=X:\\your sdk path\\bin_. Remember to write down double backslash between folders.
 
 It will take a time to compile it, the first time. After this, every time you compile, it will take fewer. In the following image, you can observe that none errors occurred. At this point, in project directory, you have a "rtthread.bin" file that will be used by you to upload the code to the board.
 
-![](RackMultipart20230729-1-lao58c_html_e350362ce3de3eeb.png)
+![](/figures/EndCompilation.png)
