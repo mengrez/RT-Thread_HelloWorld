@@ -1,143 +1,106 @@
-# CH32V208W-R0 User Guide
+# Helloworld RT-Thread OS 5 and a CH32 board
 
-**英文** | [中文](./README_ZN.md)
+_This is a simple helloworld program with leds, using RT-Thread OS 5 and a CH32V208WBU6 board_
 
-The CH32V208W-R0 supports RT-Studio projects, and this tutorial gives an example of development instructions for the RT-Studio environment.
+There are two ways of running the project: **1)** From scratch **2)** download it and upload the code to the board.
 
-## 1 Preparation Stage
+**Note A:** The present tutorial is based on a Windows OS.
 
-- Pull the github repository for rt-thread locally, [link address](https://github.com/RT-Thread/rt-thread).
-- Download and install RT-Thread Studio, [link to address](https://www.rt-thread.org/studio.html).
-- Prepare the ESP8266 module.
+## 1. **From scratch**
 
-## 2 BSP Start Stage
+If you want to know how the project were constructed, follow the following steps Otherwise, you should skip this section and go directly to point **2.**
 
-### 2.1 Click on the file and select the import option.
+Firstly, you must install the following tools:
 
-<img src="./figures_en/1import_en.png" style="zoom:80%;" />
+VSCode: [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
-### 2.2 Select to import RT-Thread BSP into the workspace
+GitHub desktop: [GitHub Desktop | Simple collaboration from your desktop](https://desktop.github.com/) (If you are good at Git please ignore this tool, and go straight to git commands)
 
-<img src="./figures_en/2workspace_en.png" style="zoom:80%;" />
+  ### 1.1. **Github repository**
 
-<div STYLE="page-break-after: always;"></div>
+Once you install the tools, you need to download RT-Thread OS 5 from Github repository: [RT-Thread/rt-thread: RT-Thread is an open source IoT real-time operating system (RTOS). (github.com)](https://github.com/RT-Thread/rt-thread)
 
-### 2.3 Fill in the project information according to the example
+**Note B:** RT-Thread OS is an open source RTOS for IoT application primary. For further details, you can check the following link: [RT-Thread | An Open Source Embedded Real-time Operating System](https://www.rt-thread.io/)
 
-<img src="./figures_en/3info_en.png" style="zoom:80%;" />
+   ### 1.1.1 **How to download it**
 
-### 2.4 Configuration Engineering
+1. Open Github desktop program on your PC and the Github repo link.
+2. In the Github repo, look for the following section
 
-After importing the project, there is a reference document readme in the root directory of the project, first of all, follow the readme.md for basic configuration
+![](RackMultipart20230729-1-lao58c_html_8620798d5f82248a.png)
 
-In order to reduce the memory increase caused by the standard library added during linking, we can choose to use the relatively small memory consumption of newlib, as follows：
+3. Click Code button and select the "local tab"
 
-<img src="./figures/13newlib.png" style="zoom:67%;" />
+![Shape1](RackMultipart20230729-1-lao58c_html_6a45b3afdd3a3f42.gif) ![](RackMultipart20230729-1-lao58c_html_f499c7de5ad6a90f.png)
 
-### 2.5 Compiling the project
+4. Click "copy clipboard" button to copy the URL that appears or click on "Open with Github Desktop" and authorize your browser invoke Github desktop.
+ ![Shape2](RackMultipart20230729-1-lao58c_html_600370c98a81587.gif)
 
-Click on the compile option:
+![](RackMultipart20230729-1-lao58c_html_b4e995b9cc9580c0.png)
 
-![](./figures_en/4build_en.png)
+**Note C:** I don't recommend to simply download the repo in a zip file. This is because, I encountered to many errors while unpacking the files from Zip.
 
-Compile result:
+5. If you have the URL, open Github Desktop and click on File-\> "Clone repository"
 
-![](./figures/5result.png)
+![](RackMultipart20230729-1-lao58c_html_df9662a5c788be98.png)
 
-The project compiles and passes, and thus the preparation phase is completed.
+6. Click on "URL tab" and paste the URL and select where repo will be downloaded.
 
-## 3 Configuring the BSP driver with RT-Studio
+![](RackMultipart20230729-1-lao58c_html_2ff877ce7175e6a9.png)
 
-Each BSP of RT-Thread has been configured with several on-chip peripheral drivers and onboard peripheral drivers by default, use RT-Studio to turn on the corresponding switches directly and configure the corresponding parameters according to the usage environment to use. Due to the multiplexing function of each pin, not all on-chip peripheral drivers and onboard peripheral drivers can be used at the same time, so you need to combine them with the schematic to enable the corresponding peripheral drivers.
+7. Finally, click on clone and let app download the repo.
 
-RT-Thread has a number of software packages, which can be added to the project by turning on the corresponding package switch using RT-Studio.
+  ### 1.2. **Environment and compiling tools**
 
-<img src="./figures_en/6pkgs_en.png" style="zoom:80%;" />
+Due to this project uses other tools different from RT-Thread Studio IDE. You need tools to compile the code using the proper env vars and spaces.
 
-## 4 Networking with ESP8266 modules
+1. Download SDK for CH32 RISCV cores: [https://github.com/NanjingQinheng/sdk-toolchain-RISC-V-GCC-WCH/archive/refs/tags/V1.0.0.zip](https://github.com/NanjingQinheng/sdk-toolchain-RISC-V-GCC-WCH/archive/refs/tags/V1.0.0.zip), Extract the zip file.
+2. Download Env tools from: [Releases · RT-Thread/env-windows (github.com)](https://github.com/RT-Thread/env-windows/releases) For windows, download env-windows-1.4.0.7z
+3. Extract env-windows-1.4.0.7z where you would like. Review that the path does not contain non-ascii or space characters.
+4. Look into the path and open env.exe, if a font error appears, ignore it or change the font.
 
-The ESP8266 is a cost-effective, highly integrated Wi-Fi MCU for IoT applications, and can also be used as a standalone WIFI module with the following physical diagram. ESP8266 modules usually support [AT](https://www.rt-thread.org/document/site/#/rt- thread-version/rt-thread-standard/programming-manual/at/at), RT-Thread provides an abstraction layer for these modules that support AT instructions, and this summary will use the AT group to communicate with ESP8266 and connect WIFI.
+![Shape3](RackMultipart20230729-1-lao58c_html_dd7cef704058cf25.gif) ![](RackMultipart20230729-1-lao58c_html_57ba53ce6af8d521.png)
 
-<img src="./figures/7esp8266.png" style="zoom:60%;" />
+5. Once it opens, click on "menu button" -\> Settings"
 
-### 4.1 Configuring Onboard UART Peripherals
+![](RackMultipart20230729-1-lao58c_html_2540be3471847c2f.png)
 
-Using the AT component to communicate with the ESP8266 module using serial communication, so we need to enable one more serial port, here we use UART2, the serial driver is already supported by default, we just need to open it in RT-Studio when we use it, as follows:
+6. Select Integration in the side menu and click on "Register". After this, click on "Save Settings"
 
-![](./figures_en/8setting_en.png)
+![Shape5](RackMultipart20230729-1-lao58c_html_a389da95e0e249cc.gif) ![Shape4](RackMultipart20230729-1-lao58c_html_14bff1d31119c85c.gif) ![](RackMultipart20230729-1-lao58c_html_e94c9b93c7f5c59b.png)
 
-After turning on the option, `ctrl + s` saves the settings and serial port 2 is initialized.
+7. Close env.exe window.
 
-### 4.2 Configuring AT components with RT-Studio
+  ### 1.3 **The creation of project**
 
-Click on the RT-Thread Settings option on the left, the configuration menu on the right pops up, type AT in the search field, select `AT device` and enable the AT device: 
+1. Open the folder where you downloaded RT-Thread OS repo, and look into the following path: ._..\bsp\wch\risc-v\ch32v208w-r0_. Once you arrive there, click on your right mouse button and select "ComEmu here"
 
-<img src="./figures_en/9AT_en.png" style="zoom: 50%;" />
+**Note D:** BSPrefers toa package that contains all the necessary files to run RT-Thread OS on a specific board.
 
-Select the ESP8266 and configure the appropriate parameters, as shown in the example below.
+1. Once a console is opened, type the following command: _scons --dist --target=vsc --project-path="path/your project name " --project-name="your project name"._
+2. Go to project path, and open a ComEmu there. After that, click on vscode workspace.
 
-<img src="./figures_en/10wifinfo_en.png" style="zoom:80%;" />
+![](RackMultipart20230729-1-lao58c_html_81a2ac74c57536b7.png)
 
-### 4.3 ESP8266 module connection
+3. On VSCode, go to applications and open main.c. Once it opens, substitute the code with following:
 
-Connect the `PA2` pin on the board to the `RX` pin of the module, connect the `PA3` pin to the `TX` pin of the module, and power the module using the power supply pinout from the development board.
+![](RackMultipart20230729-1-lao58c_html_26c2436c369d874a.png)
 
-<img src="./figures/11board.png" style="zoom: 25%;" />
+4. Save changes
 
-### 4.4 Enabling kernel debugging.
+## 2. **Upload code.**
 
-For a more intuitive understanding of the component initialization process, we can enable the kernel debugging feature to observe it (you can turn it off when not needed) by doing the following:
+**Note E:** if you download the project, please follow the following instruction to upload the code to the board.
 
-![](./figures_en/12kdebug_en.png)
+Once you have the environment and compiling tools (see 1.2), you can proceed to compile the project from "ComEmu console".
 
-Recompile and burn the firmware, the shell output is as follows:
+1. Open the directory of the project.
+2. Open rtconfig.py and change the EXECT\_PATH with r'_X:\\your sdk path\\bin'_. Save the changes and remember to use the format with double backslashes between folders
 
-![](./figures/14shellinfo.png)
+![](RackMultipart20230729-1-lao58c_html_4dbfdf6369a4b803.png)
 
-### 4.5 wifi networking test
+3. Open ComEmu console, and type the following: _scons --exec-path=X:\\your sdk path\\bin_. Remember to write down double backslash between folders.
 
-My door has configured the WIFI ID and password when using AT, enter the `ping www.baidu.com` command in the shell to test the WIFI connection.
+It will take a time to compile it, the first time. After this, every time you compile, it will take fewer. In the following image, you can observe that none errors occurred. At this point, in project directory, you have a "rtthread.bin" file that will be used by you to upload the code to the board.
 
-![](./figures/15ping.png)
-
-Output similar content, the ESP8266 module is connected successfully!
-
-### 5 RTduino components
-
-[RTduino](https://github.com/Yaochenger/RTduino) is the Arduino eco-compatible layer of the RT-Thread real-time operating system, and is a sub-community of the [RT-Thread community](https://github.com/RT-Thread/rt- thread), the downstream project of the Arduino open source project, aims to be compatible with the Arduino community ecology to enrich the RT-Thread community package ecology (such as thousands of different Arduino libraries, as well as the excellent open source projects of the Arduino community), and to reduce the learning threshold of the RT-Thread operating system and the chips compatible with RT-Thread. and RT-Thread-adapted chips.
-
-#### 5.1 Configuring RTduino
-
-Turn on the RTduino option in the onboard device driver.
-
-![](./figures_en/16rtduino_en.png)
-
-After turning on the option, `ctrl + s` saves the settings and the RTduino package can be added to the project.
-
-#### 5.2 Using RTduino
-
-In `arduino_main.cpp` you will see the familiar `void setup(void)` and `void loop(void)`, so we can use the BSP here like the official arduino board, the sample code is as follows:
-
-```c++
-#include <Arduino.h>
-
-void setup(void)
- {
-     /* put your setup code here, to run once: */
-    pinMode(LED_BUILTIN, OUTPUT).
- }
-
-void loop(void)
-{
-    /* put your main code here, to run repeatedly: */
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN)).
-    delay(100).
-}
-
-```
-
- By default, the project performs a blinking LED function. ch32v208w-r0, the default on-board LED is not directly connected to the pin, the user needs to manually connect the LED to the control pin using a duplex cable, the phenomenon is shown below:
-
-<img src="./figures/17led.png" style="zoom: 25%;" />
-
-So the basic environment of ch32v208w-r0 is built and tested!
+![](RackMultipart20230729-1-lao58c_html_e350362ce3de3eeb.png)
