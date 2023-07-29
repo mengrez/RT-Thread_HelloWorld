@@ -114,4 +114,40 @@ The FTDI board utilizes the following driver: [FTDI-DriverWindows](https://ftdic
 
 ![](/figures/CH32BoardUSBConnection.png)
 
+**Note E:** Although the board includes two built-in Leds, they are not connected to any pin of the board. Therefore, you have to wire them to the correct pin, according to code.
 
+6. Open WCHISP Studio and select RISC-V MCU.
+
+![](/figures/WCHISPRISCV.png)
+
+7. Select the correct chip.
+
+![](/figures/WCHISPChipSelect.png)
+
+8. Set Dnld port as Serial Port and check that DI_baud is at 115200.
+
+![](/figures/WCHISPSerialPortConfig)
+
+9. **This step only occurs once** Hold "Download" board button while connecting FTDI to USB port. Then press "search" button and click on "deprotect" at the end of the screen.
+
+![](/figures/WCHISPDeprotect.png)
+
+Once it finishes the console reports:
+
+![](/figures/WCHISPDeprotectResult.png) 
+
+10. Disconnect the device from USB. 
+
+11. **Every time you want to program the devices you have to do this** Hold "Download" board button while connecting FTDI to USB port, then press "search" button. Change the size of the WCHISP screen to force download File to appear.
+
+![](/figures/WCHISPDownloadFile.png) 
+
+12. Select "..." to search the bin file, you have created.
+
+13. Maximize the window's size to click on the "Download" and wait until the ISP ends
+
+![](/figures/WCHISPDownloadButton.png)
+
+Once it finishes the console reports: 
+
+![](/figures/WCHISPDownloadResult.png)
