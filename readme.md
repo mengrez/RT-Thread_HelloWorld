@@ -126,15 +126,15 @@ The FTDI board utilizes the following driver: [FTDI-DriverWindows](https://ftdic
 
 8. Set Dnld port as Serial Port and check that DI_baud is at 115200.
 
-![](/figures/WCHISPSerialPortConfig)
+![](/figures/WCHISPSerialPortConfig.png)
 
 9. **This step only occurs once** Hold "Download" board button while connecting FTDI to USB port. Then press "search" button and click on "deprotect" at the end of the screen.
 
-![](/figures/WCHISPDeprotect.png)
+![](/figures/WCHISPDeprotec.png)
 
 Once it finishes the console reports:
 
-![](/figures/WCHISPDeprotectResult.png) 
+![](/figures/WCHISPDeprotecResult.png) 
 
 10. Disconnect the device from USB. 
 
