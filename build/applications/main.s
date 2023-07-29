@@ -12,7 +12,7 @@
 	.string	"Hello world RT-THread Os 5\r\n"
 	.align	2
 .LC2:
-	.string	"PB.0"
+	.string	"PA.1"
 	.text
 	.align	1
 	.globl	main
@@ -20,7 +20,7 @@
 main:
 .LFB42:
 	.file 1 "applications\\main.c"
-	.loc 1 21 1
+	.loc 1 17 1
 	.cfi_startproc
 	addi	sp,sp,-16
 	.cfi_def_cfa_offset 16
@@ -30,52 +30,52 @@ main:
 	.cfi_offset 8, -8
 	addi	s0,sp,16
 	.cfi_def_cfa 8, 0
-	.loc 1 22 5
+	.loc 1 18 5
 	lla	a0,.LC0
 	call	rt_pin_get
 	mv	a5,a0
 	li	a1,0
 	mv	a0,a5
 	call	rt_pin_mode
-	.loc 1 23 5
+	.loc 1 19 5
 	lla	a0,.LC1
 	call	rt_kprintf
 .L2:
-	.loc 1 26 9 discriminator 1
+	.loc 1 22 9 discriminator 1
 	lla	a0,.LC0
+	call	rt_pin_get
+	mv	a5,a0
+	li	a1,1
+	mv	a0,a5
+	call	rt_pin_write
+	.loc 1 23 9 discriminator 1
+	lla	a0,.LC2
+	call	rt_pin_get
+	mv	a5,a0
+	li	a1,0
+	mv	a0,a5
+	call	rt_pin_write
+	.loc 1 24 9 discriminator 1
+	li	a0,500
+	call	rt_thread_mdelay
+	.loc 1 25 9 discriminator 1
+	lla	a0,.LC0
+	call	rt_pin_get
+	mv	a5,a0
+	li	a1,0
+	mv	a0,a5
+	call	rt_pin_write
+	.loc 1 26 9 discriminator 1
+	lla	a0,.LC2
 	call	rt_pin_get
 	mv	a5,a0
 	li	a1,1
 	mv	a0,a5
 	call	rt_pin_write
 	.loc 1 27 9 discriminator 1
-	lla	a0,.LC2
-	call	rt_pin_get
-	mv	a5,a0
-	li	a1,0
-	mv	a0,a5
-	call	rt_pin_write
-	.loc 1 28 9 discriminator 1
 	li	a0,500
 	call	rt_thread_mdelay
-	.loc 1 29 9 discriminator 1
-	lla	a0,.LC0
-	call	rt_pin_get
-	mv	a5,a0
-	li	a1,0
-	mv	a0,a5
-	call	rt_pin_write
-	.loc 1 30 9 discriminator 1
-	lla	a0,.LC2
-	call	rt_pin_get
-	mv	a5,a0
-	li	a1,1
-	mv	a0,a5
-	call	rt_pin_write
-	.loc 1 31 9 discriminator 1
-	li	a0,500
-	call	rt_thread_mdelay
-	.loc 1 26 9 discriminator 1
+	.loc 1 22 9 discriminator 1
 	j	.L2
 	.cfi_endproc
 .LFE42:
@@ -1401,7 +1401,7 @@ main:
 	.byte	0x22
 	.4byte	.LASF5814
 	.byte	0x1
-	.byte	0x14
+	.byte	0x10
 	.byte	0x5
 	.4byte	0x74
 	.4byte	.LFB42
@@ -2868,7 +2868,7 @@ main:
 	.4byte	.LASF319
 	.file 12 "Libraries\\ch32v20x_libraries\\ch32v208_hal\\include/ch32v20x.h"
 	.byte	0x3
-	.byte	0xb
+	.byte	0x7
 	.byte	0xc
 	.byte	0x7
 	.4byte	.Ldebug_macro2
@@ -3278,7 +3278,7 @@ main:
 	.byte	0x4
 	.file 52 "rt-thread\\include/rtthread.h"
 	.byte	0x3
-	.byte	0xc
+	.byte	0x8
 	.byte	0x34
 	.byte	0x5
 	.byte	0x19
@@ -3360,13 +3360,13 @@ main:
 	.byte	0x4
 	.file 59 "rt-thread\\components\\drivers\\include/drivers/pin.h"
 	.byte	0x3
-	.byte	0xe
+	.byte	0xa
 	.byte	0x3b
 	.byte	0x7
 	.4byte	.Ldebug_macro57
 	.byte	0x4
 	.byte	0x3
-	.byte	0xf
+	.byte	0xb
 	.byte	0xb
 	.byte	0x5
 	.byte	0xd
@@ -3582,10 +3582,10 @@ main:
 	.4byte	.Ldebug_macro75
 	.byte	0x4
 	.byte	0x5
-	.byte	0x11
+	.byte	0xd
 	.4byte	.LASF5671
 	.byte	0x5
-	.byte	0x12
+	.byte	0xe
 	.4byte	.LASF5672
 	.byte	0x4
 	.byte	0
@@ -28508,6 +28508,8 @@ main:
 	.string	"ADC_ExternalTrigInjecConv_T1_CC4 ((uint32_t)0x00001000)"
 .LASF5546:
 	.string	"TIMER_ABSTIME 4"
+.LASF5672:
+	.string	"LED1 rt_pin_get(\"PA.1\")"
 .LASF679:
 	.string	"ADC_SMP0_1 ((uint32_t)0x00000002)"
 .LASF3952:
@@ -30312,8 +30314,6 @@ main:
 	.string	"DEBUG_UART2 2"
 .LASF4368:
 	.string	"RCC_APB1Periph_TIM6 ((uint32_t)0x00000010)"
-.LASF5672:
-	.string	"LED1 rt_pin_get(\"PB.0\")"
 .LASF2381:
 	.string	"FLASH_CTLR_EOPIE ((uint32_t)0x00001000)"
 .LASF810:

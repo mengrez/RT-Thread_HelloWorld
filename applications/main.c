@@ -11,7 +11,7 @@
 #include <board.h>
 
 #define LED0 rt_pin_get("PA.0")
-#define LED1 rt_pin_get("PB.0")
+#define LED1 rt_pin_get("PA.1")
 
 int main(void)
 {

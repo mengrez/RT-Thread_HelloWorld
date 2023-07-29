@@ -323,7 +323,12 @@
 #define RT_USING_LIBC 1
 #define _POSIX_C_SOURCE 1
 # 1 "applications\\main.c"
-# 11 "applications\\main.c"
+
+
+
+
+
+
 # 1 "Libraries\\ch32v20x_libraries\\ch32v208_hal\\include/ch32v20x.h" 1
 # 11 "Libraries\\ch32v20x_libraries\\ch32v208_hal\\include/ch32v20x.h"
 #define __CH32V20x_H 
@@ -10305,7 +10310,7 @@ void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup);
 void NVIC_Init(NVIC_InitTypeDef *NVIC_InitStruct);
 # 33 "Libraries\\ch32v20x_libraries\\bmsis\\include/ch32v20x_conf.h" 2
 # 4812 "Libraries\\ch32v20x_libraries\\ch32v208_hal\\include/ch32v20x.h" 2
-# 12 "applications\\main.c" 2
+# 8 "applications\\main.c" 2
 # 1 "rt-thread\\include/rtthread.h" 1
 # 25 "rt-thread\\include/rtthread.h"
 #define __RT_THREAD_H__ 
@@ -12191,7 +12196,7 @@ void rt_show_version(void);
 #define RT_DEBUG_NOT_IN_INTERRUPT 
 #define RT_DEBUG_IN_THREAD_CONTEXT 
 #define RT_DEBUG_SCHEDULER_AVAILABLE(need_check) 
-# 13 "applications\\main.c" 2
+# 9 "applications\\main.c" 2
 
 # 1 "rt-thread\\components\\drivers\\include/drivers/pin.h" 1
 # 13 "rt-thread\\components\\drivers\\include/drivers/pin.h"
@@ -12265,7 +12270,7 @@ rt_err_t rt_pin_attach_irq(rt_base_t pin, rt_uint8_t mode,
                            void (*hdr)(void *args), void *args);
 rt_err_t rt_pin_detach_irq(rt_base_t pin);
 rt_err_t rt_pin_irq_enable(rt_base_t pin, rt_uint8_t enabled);
-# 15 "applications\\main.c" 2
+# 11 "applications\\main.c" 2
 # 1 "board/board.h" 1
 # 13 "board/board.h"
 #define __BOARD_H__ 
@@ -13491,10 +13496,10 @@ extern int _ebss;
 #define HEAP_END (SRAM_END-_stack_size)
 
 void rt_hw_board_init(void);
-# 16 "applications\\main.c" 2
+# 12 "applications\\main.c" 2
 
 #define LED0 rt_pin_get("PA.0")
-#define LED1 rt_pin_get("PB.0")
+#define LED1 rt_pin_get("PA.1")
 
 int main(void)
 {
@@ -13503,10 +13508,10 @@ int main(void)
     while(1)
     {
         rt_pin_write(rt_pin_get("PA.0"), 0x01);
-        rt_pin_write(rt_pin_get("PB.0"), 0x00);
+        rt_pin_write(rt_pin_get("PA.1"), 0x00);
         rt_thread_mdelay(500);
         rt_pin_write(rt_pin_get("PA.0"), 0x00);
-        rt_pin_write(rt_pin_get("PB.0"), 0x01);
+        rt_pin_write(rt_pin_get("PA.1"), 0x01);
         rt_thread_mdelay(500);
     }
 }

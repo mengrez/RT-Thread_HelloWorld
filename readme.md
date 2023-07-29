@@ -151,3 +151,7 @@ Once it finishes the console reports:
 Once it finishes the console reports: 
 
 ![](/figures/WCHISPDownloadResult.png)
+
+14. Wire built-in leds to the correct pin, according to code and open your Serial Monitor of your preference.
+
+![](/figures/SerialMonitor.png)
